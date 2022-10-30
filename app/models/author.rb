@@ -28,4 +28,15 @@ class Author
         @magazines
     end
 
+    # add_articles and topic_areas method
+    def add_article (magazine, title)
+        article = Article.new(self, magazine, title)
+        @articles << article
+        magazine.add_article(article)
+    end
+  
+    def topic_areas
+        topics = @magazines.map { |mag| mag.category}
+        topics.uniq
+    end
 end
