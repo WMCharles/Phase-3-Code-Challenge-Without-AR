@@ -1,50 +1,48 @@
-class Magazine 
+class Magazine
     
-    attr_accessor :name, :category, :author
-  
+    attr_reader :name, :category
+
     @@all = []
+
     def initialize(name, category)
-        @name = name 
+        @name = name
         @category = category
-        @@all << self.name
-        @contributors = []
-        @articles = []
+        @@all << self
+    end
+    
+    def self.all
+      @@all
     end
 
-    # add all class methods
-    def self.all 
-        @@all
-    end 
+    def add_article(title, author)
+      Article.new(author, self, title)
+    end
 
-    def add_contributors(author)
-        @contributors << author
-        author.magazine = self
+    def articles
+      Article.all.select { |article| article.magazine == self}
     end
-  
-    def contributors 
-        @contributors.map { |author| author.name }
+
+    # getting available headlines
+    def article_titles
+        articles.map {|article| article.title}
     end
-  
-    def contributing_authors
-        @contributors.filter do |author|
-            if author.articles.length > 2
-                author.name
-            else
-                "None" 
+
+    def contributors
+      articles.map {|art| art.author}.uniq
+    end
+
+    def contributing_authors 
+        authors = articles.map do |article|
+            if article.author.articles.length > 2
+                article.author
             end
         end
+        authors.uniq
     end
-  
-    def add_article(article)
-        @articles << article.title 
+
+    def self.find_by_name(name)
+      magazine = self.all.find { |magazine| magazine.name == name}
+      magazine.name
     end
-  
-    def article_titles
-        @articles
-    end
-  
-    def find_by_name(name)
-        @articles.find { |art| art.include?(name)}
-    end
-  
+
 end
