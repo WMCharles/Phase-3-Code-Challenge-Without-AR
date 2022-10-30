@@ -11,4 +11,18 @@ class Magazine
         @articles = []
     end
     
+    # add all class methods
+    def self.all 
+        @@all
+    end 
+
+    def add_contributors(author)
+        @contributors << author
+        author.magazine = self
+    end
+  
+    def contributors 
+        @contributors.map { |author| author.name }
+    end
+  
 end
