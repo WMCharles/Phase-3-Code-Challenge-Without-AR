@@ -18,4 +18,14 @@ class Author
         @magazines << magazine 
         magazine.author = self
     end
+
+    # article && magazine methods
+    def articles
+        @articles
+    end
+  
+    def magazines
+        @magazines
+    end
+
 end
