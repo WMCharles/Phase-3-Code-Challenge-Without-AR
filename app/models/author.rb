@@ -25,7 +25,7 @@ class Author
     end
   
     def magazines
-        @magazines
+        @magazines.map {|mag| mag.name}
     end
 
     # add_articles and topic_areas method
