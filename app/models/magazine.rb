@@ -35,4 +35,8 @@ class Magazine
         end
     end
   
+    def add_article(article)
+        @articles << article.title 
+    end
+  
 end
