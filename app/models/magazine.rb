@@ -10,7 +10,7 @@ class Magazine
         @contributors = []
         @articles = []
     end
-    
+
     # add all class methods
     def self.all 
         @@all
@@ -37,6 +37,14 @@ class Magazine
   
     def add_article(article)
         @articles << article.title 
+    end
+  
+    def article_titles
+        @articles
+    end
+  
+    def find_by_name(name)
+        @articles.find { |art| art.include?(name)}
     end
   
 end
