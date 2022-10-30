@@ -25,4 +25,14 @@ class Magazine
         @contributors.map { |author| author.name }
     end
   
+    def contributing_authors
+        @contributors.filter do |author|
+            if author.articles.length > 2
+                author.name
+            else
+                "None" 
+            end
+        end
+    end
+  
 end
